@@ -14,7 +14,7 @@
 
 ## How to test
 - Verify that the new custom post type called "Cat Picks" is visible in the menu sidebar
-- Crete a new Cat Pick post with a title and content
+- Create a new Cat Pick post with a title and content
 - Navigate to the Feature By field and enter text into the field
 - Click Update or Save
 - Click View Post and confirm the Featured By value appears on the page.
