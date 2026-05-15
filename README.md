@@ -21,3 +21,6 @@
 
 ## What I would improve
 Given more time I would consider adding a feature which allows the editor to add multiple contributors, allowing editors to add just one or multiple people to the "Featured By" section.
+
+## Additional Notes
+I used Claude as a development collaborator throughout this project. Specifically I used it to generate the initial boilerplate for the plugin structure, verify WordPress best practices around nonce verification and sanitization, and talk through implementation decisions. All code was reviewed, tested, and understood before committing.
