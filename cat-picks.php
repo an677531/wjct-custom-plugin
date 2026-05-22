@@ -3,6 +3,10 @@
  * Plugin Name: Cat Picks
  * Description: Creates a custom post type called Cat Picks with a new custom field called "Featured By".
  * Author: Anthony Zarczynski
+ * Version: 1.0
+ * Text Domain: cat-picks
+ * Requires at least: 6.0
+ * Requires PHP: 7.4
  */
 
 /**
@@ -11,11 +15,18 @@
 function cat_picks_register_post_type() {
     register_post_type( 'cat_picks', array(
         'labels' => array(
-            'name'          => 'Cat Picks',
-            'singular_name' => 'Cat Pick',
-            'add_new_item'  => 'Add New Cat Pick',
-            'edit_item'     => 'Edit Cat Pick',
-            'view_item'     => 'View Cat Pick',
+            'name'               => 'Cat Picks',
+            'singular_name'      => 'Cat Pick',
+            'add_new'            => 'Add New',
+            'add_new_item'       => 'Add New Cat Pick',
+            'edit_item'          => 'Edit Cat Pick',
+            'new_item'           => 'New Cat Pick',
+            'view_item'          => 'View Cat Pick',
+            'search_items'       => 'Search Cat Picks',
+            'not_found'          => 'No Cat Picks found',
+            'not_found_in_trash' => 'No Cat Picks found in Trash',
+            'all_items'          => 'All Cat Picks',
+            'menu_name'          => 'Cat Picks',
         ),
         'public'        => true,
         'has_archive'   => true,
@@ -115,6 +126,26 @@ function cat_picks_display_featured_by( $content ) {
                 . '</p>';
         }
     }
+
     return $content;
 }
+
 add_filter( 'the_content', 'cat_picks_display_featured_by' );
+/**
+ * On activation, register the post type and flush rewrite rules
+ * so Cat Picks URLs work immediately without manual permalink save.
+ */
+function cat_picks_activate() {
+    cat_picks_register_post_type();
+    flush_rewrite_rules();
+}
+register_activation_hook( __FILE__, 'cat_picks_activate' );
+
+/**
+ * On deactivation, flush rewrite rules
+ * to remove stale Cat Picks routes.
+ */
+function cat_picks_deactivate() {
+    flush_rewrite_rules();
+}
+register_deactivation_hook( __FILE__, 'cat_picks_deactivate' );
